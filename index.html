@@ -1,49 +1,141 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Surprise 💥</title>
+<title>Love Surprise 💖</title>
 
 <style>
 body {
   margin: 0;
-  background: black;
-  color: white;
+  font-family: 'Segoe UI', sans-serif;
   text-align: center;
-  font-family: Arial;
+  background: linear-gradient(to bottom, #ff9eb5, #ff6f91);
+  color: white;
   overflow: hidden;
 }
 
-#startBtn {
+/* Button */
+button {
   margin-top: 40vh;
   padding: 15px 30px;
   font-size: 20px;
-  background: red;
+  background: white;
+  color: #ff4d6d;
   border: none;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
+  border-radius: 30px;
+  box-shadow: 0 0 15px rgba(255,255,255,0.7);
 }
 
+/* Boom effect */
 #boom {
   display: none;
   font-size: 80px;
-  animation: boomAnim 0.6s ease;
+  animation: boom 0.6s ease;
 }
 
-@keyframes boomAnim {
+@keyframes boom {
   0% {transform: scale(0);}
   100% {transform: scale(1.5);}
 }
 
+/* Content */
 #content {
   display: none;
   animation: fadeIn 2s ease;
 }
 
-#content img {
-  width: 250px;
+img {
+  width: 260px;
   border-radius: 20px;
   margin-top: 20px;
-  animation: zoomIn
-<img src="YOUR_IMAGE_URL_HERE" alt="photo">
+  box-shadow: 0 0 25px rgba(255,255,255,0.8);
+  animation: zoomIn 1.5s ease;
+}
+
+/* Text box (image jaisa niche wala area) */
+.message-box {
+  margin: 20px auto;
+  padding: 15px;
+  width: 80%;
+  max-width: 300px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 18px;
+}
+
+/* Animations */
+@keyframes zoomIn {
+  0% {transform: scale(0);}
+  100% {transform: scale(1);}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: 0;
+  color: pink;
+  animation: floatUp 5s linear infinite;
+}
+
+@keyframes floatUp {
+  0% {transform: translateY(0); opacity:1;}
+  100% {transform: translateY(-100vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<button onclick="start()">Tap to Open 💌</button>
+
+<div id="boom">💖</div>
+
+<div id="content">
+  <h1>I Love You ❤️</h1>
+
+  <!-- IMAGE -->
+  <img src="https://i.imgur.com/4AiXzf8.jpeg">
+
+  <!-- MESSAGE BOX -->
+  <div class="message-box">
+    Tu meri life ka sabse special part hai ❤️  
+    Kabhi mat jaana 😘
+  </div>
+</div>
+
+<script>
+function start(){
+  document.querySelector("button").style.display="none";
+  document.getElementById("boom").style.display="block";
+
+  setTimeout(()=>{
+    document.getElementById("boom").style.display="none";
+    document.getElementById("content").style.display="block";
+    createHearts();
+  },800);
+}
+
+/* Floating hearts function */
+function createHearts(){
+  setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💗";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (20 + Math.random()*20) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },5000);
+  },500);
+}
+</script>
+
+</body>
+</html>
